@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import useInterval from './useInterval'
 import Basic from './basic'
 
 
@@ -22,7 +23,7 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         currentStatus: 'opened'
     })
 
-    const [playTime, setPlayTime] = useState(0);
+    const [playTime, setPlayTime] = useState(10);
     const [releaseSide, setReleaseSide] = useState(false);
     const [buttonsHidden, setButtonsHidden] = useState('');
     const [userCounter, setUserCounter] = useState(1)
@@ -40,13 +41,28 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         'rotate360'
     ];
 
+    useInterval(() => {
+        if (gameStatus.currentStatus === status.STARTED) {
+            if (gameStatus.isRunning === false) {
+                setPlayTime(playTime - 1)
+            } else {
+                setPlayTime(10)    
+            }
+        } else {
+            setPlayTime(10)
+        }
+        if (playTime === 0) {
+            gameOver();
+        }
+    }, 1000)
+
     useEffect(() => {
         if (gameStatus.currentStatus === status.FINISHED) {
             resetGame();
         }
 
         const rand = Math.floor(Math.random() * 4) + 1;
-        setRotation(rotations[rand])        
+        setRotation(rotations[rand-1])        
         
     }, [gameStatus])
 
@@ -135,6 +151,10 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         sides.push(rand)
         setCurrentSecuence(sides);
         setCurrentCounter(currentCounter+1);
+        setGameStatus({
+            ...gameStatus,
+            isRunning: true
+        })
         
         for(var i = 0;i < sides.length; i++){
             let k = i;
@@ -145,19 +165,10 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
                         currentStatus: status.STARTED,
                         isRunning: false
                     })
-                    initCounter();
                 }
                 updateButtonPressed(sides[k])
             }, 800 * (k + 1));
         }
-    }
-
-    const initCounter = () => {
-        let counter = 0;
-        setInterval(() => {
-            counter++;
-            setPlayTime(counter);
-        }, 1000)
     }
 
     const gameOver = () => {
@@ -172,11 +183,11 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
     return (
         <div className="container container-intro container-game">
             <div className="game">
-                <h2 className="playt">{playTime}</h2>
-                <div className="circle">                 
-                    <p className="points score"><span>{currentCounter}</span></p>
+                <p className="playtime">Time left: {playTime}</p>
+                <p className="points score"><span>{currentCounter}</span></p>
+                <div className={rotation + " circle"}>
                     <div className="innercircle"></div>
-                    <div className={rotation + ' figure'}>
+                    <div className='figure'>
                         <Basic 
                             side="topleft" 
                             sounds={sounds} 

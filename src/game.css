@@ -10,6 +10,7 @@
 }
 
 .generic-block {
+  display: none;
   height: 100vh;
   position: absolute;
   left: 0;
@@ -19,11 +20,13 @@
 }
 
 .intro-block.intro-frame {
+  display: block;
   opacity: 1;
   z-index: 100;
 }
 
 .game-block.game-frame {
+  display: block;
   opacity: 1;
   z-index: 100;
 }
@@ -35,6 +38,7 @@
   overflow: hidden;
   position: relative;
   box-shadow: 4px 2px 7px 1px #888;
+  transition: 200ms ease-out all;
 }
 
 .innercircle {
@@ -46,14 +50,15 @@
   border-radius: 50%;
   background: #04142D;
   position: absolute;
+  z-index:2;
 }
 
 .figure {
   background: #04142D;
   display: flex;
   flex-flow: row wrap;
-  height: 500px;
-  width: 500px;
+  height: 400px;
+  width: 400px;
   justify-content: space-between;
   align-items: center;
   transition: 100ms all ease;
@@ -70,8 +75,8 @@
   font-size: 4rem;
   position: absolute;
   z-index: 3;
-  top: 37%;
-  left: 50%;
+  top: 41%;
+  left: 51%;
   transform: translateX(-50%) translateY(-50%);
 }
 
@@ -85,8 +90,8 @@
 
 .indicators {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 5px;
+  left: 0;
 }
 
 .indicators p, .indicators span {
@@ -164,11 +169,18 @@
         10px 0 80px lightblue; 
 }
 
+.playtime {
+  color: white;
+  font-weight: 1.5rem;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
 .gameover {
   z-index: 5;
-  position: static;
-  top: 50%;
-  left: 50%;
+  position: absolute;
+  top: 40%;
   text-transform: uppercase;
   display: none;
 }
@@ -180,6 +192,8 @@
 .gameover h1 {
   color: white;
   font-size: 4rem;
+  line-height: 5rem;
+  text-align: center;
   text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
 }
 
@@ -189,6 +203,8 @@
   flex-flow: column;
   justify-content: space-between;
   margin-top: 0;
+  padding-top: 100px;
+  position: relative;
 }
 
 .action-buttons {
@@ -197,7 +213,7 @@
   justify-content: space-around;
   transition: 300ms all lineal;
   opacity: 1;
-  width: 80%;
+  width: 100%;
 }
 
 .action-buttons .btn {
@@ -252,18 +268,30 @@
   }
   .points {
     font-size: 2rem;
+    top: 39%;
   }
   .indicators {
-    top: 8px;
+    top: -50px;
     left: auto;
   }
   .indicators span {
     font-size: 1rem;
   }
-  
+  .playtime {
+    top: 0;
+    left: auto;
+  }
+  .gameover {
+    left: auto;
+  }
   .gameover h1{
     font-size: 2rem;
     line-height: 3rem;
   }
-
+  .action-buttons {
+    flex-flow: column wrap;
+  }
+  .action-buttons .btn{
+    font-size: 1rem;
+  }
 }

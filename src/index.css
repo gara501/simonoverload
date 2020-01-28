@@ -1,8 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Press Start 2P";
+  letter-spacing: -.01719rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +9,109 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+  height: 100vh;
+}
+
+.container-intro {
+  background: url('./images/bg2.jpg') no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.btn {
+  background-color: #04142D; 
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Press Start 2P";
+  letter-spacing: -.01719rem;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  transition: 300ms linear all;
+}
+
+.btn-vspace {
+  margin: 20px 0;
+}
+
+.btn:hover {
+  background-color: #2F4260; 
+  cursor: pointer;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btn:disabled {
+  border: 1px solid #2F4260;
+  color: #2F4260;
+}
+
+.btn:disabled:hover {
+  background-color: #04142D; 
+}
+
+.title {
+  color: white;
+  font-size: 3rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+  transition: 300ms linear all;
+  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  text-align: center;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.title:hover {
+  color: #c2c2c2;
+}
+
+.generic-block {
+  z-index: 1;
+}
+
+.generic-block.active-block {
+  z-index: 2;
+}
+
+.loading {
+  align-items: center;
+  background: black;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.loading .title {
+  animation-duration: 1s;
+  margin-top: 30%;
+  font-size: 2rem;
+}
+
+.loading-container {
+  z-index: -100;
+}
+
+.container.loading-container.loading-active {
+  position: absolute;
+  z-index: 500;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    text-align: center;
+  }
 }

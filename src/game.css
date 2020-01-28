@@ -1,0 +1,269 @@
+.intro {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+.intro div {
+  flex: 1;
+}
+
+.generic-block {
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  width: 100vw;
+}
+
+.intro-block.intro-frame {
+  opacity: 1;
+  z-index: 100;
+}
+
+.game-block.game-frame {
+  opacity: 1;
+  z-index: 100;
+}
+
+/* Basic Figure */
+.circle {
+  border: 50px solid #04142D;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 4px 2px 7px 1px #888;
+}
+
+.innercircle {
+  height: 200px;
+  width: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 50%;
+  background: #04142D;
+  position: absolute;
+}
+
+.figure {
+  background: #04142D;
+  display: flex;
+  flex-flow: row wrap;
+  height: 500px;
+  width: 500px;
+  justify-content: space-between;
+  align-items: center;
+  transition: 100ms all ease;
+}
+
+.block {
+  height: 48%;
+  width: 48%;
+  box-shadow: 4px 2px 7px 1px #000;
+}
+
+.points {
+  color: white;
+  font-size: 4rem;
+  position: absolute;
+  z-index: 3;
+  top: 37%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.points span {
+  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+
+.container-game {
+  position: relative;
+}
+
+.indicators {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.indicators p, .indicators span {
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+
+.topleft {
+  align-self: flex-start;
+  background-color: green;
+}
+
+.bottomleft {
+  align-self: flex-end;
+  background-color: yellow;
+}
+
+.bottomright {
+  align-self: flex-end;
+  background-color: blue;
+
+}
+
+.topright {
+  align-self: flex-start;
+  background-color: red;
+}
+
+.pressed {
+  box-shadow:
+        inset 0 0 50px white,
+        inset 20px 0 80px white,   
+        inset -20px 0 80px white,  
+        inset 20px 0 300px white,  
+        inset -20px 0 300px white, 
+        0 0 50px white,            
+        -10px 0 80px white,        
+        10px 0 80px white;         
+}
+
+.topleft.pressed {
+  box-shadow:
+        inset 0 0 50px lightgreen,
+        inset 20px 0 80px lightgreen,   
+        inset -20px 0 80px lightgreen,  
+        inset 20px 0 300px lightgreen,  
+        inset -20px 0 300px lightgreen, 
+        0 0 50px lightgreen,            
+        -10px 0 80px lightgreen,        
+        10px 0 80px lightgreen; 
+}
+
+.topright.pressed {
+  box-shadow:
+        inset 0 0 50px rgb(235, 101, 101),
+        inset 20px 0 80px rgb(235, 101, 101),   
+        inset -20px 0 80px rgb(235, 101, 101),  
+        inset 20px 0 300px rgb(235, 101, 101),  
+        inset -20px 0 300px rgb(235, 101, 101), 
+        0 0 50px rgb(235, 101, 101),            
+        -10px 0 80px rgb(235, 101, 101),        
+        10px 0 80px rgb(235, 101, 101); 
+}
+
+.bottomright.pressed {
+  box-shadow:
+        inset 0 0 50px lightblue,
+        inset 20px 0 80px lightblue,   
+        inset -20px 0 80px lightblue,  
+        inset 20px 0 300px lightblue,  
+        inset -20px 0 300px lightblue, 
+        0 0 50px lightblue,            
+        -10px 0 80px lightblue,        
+        10px 0 80px lightblue; 
+}
+
+.gameover {
+  z-index: 5;
+  position: static;
+  top: 50%;
+  left: 50%;
+  text-transform: uppercase;
+  display: none;
+}
+
+.gameover.animated {
+  display: block;
+}
+
+.gameover h1 {
+  color: white;
+  font-size: 4rem;
+  text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+}
+
+.game {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+.action-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  transition: 300ms all lineal;
+  opacity: 1;
+  width: 80%;
+}
+
+.action-buttons .btn {
+  width: auto;
+}
+
+.volumeicon {
+  position: absolute;
+  font-size: 2rem;
+  color: white;
+  right: 10px;
+  top: 30px;
+  z-index: 300;
+}
+
+.volumeicon:hover {
+  cursor: pointer;
+}
+
+.buttons-hidden {
+  opacity: 0;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.rotate270 {
+  transform: rotate(270deg);
+}
+
+.rotate360 {
+  transform: rotate(360deg);
+}
+
+@media (max-width: 600px) {
+  .game {
+    justify-content: normal;
+    margin-top: 10%;
+  }
+  .figure {
+    height: 250px;
+    width: 250px;
+  }
+  .innercircle {
+    height: 100px;
+    width: 100px;
+  }
+  .points {
+    font-size: 2rem;
+  }
+  .indicators {
+    top: 8px;
+    left: auto;
+  }
+  .indicators span {
+    font-size: 1rem;
+  }
+  
+  .gameover h1{
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+}

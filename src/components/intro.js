@@ -4,7 +4,11 @@ const Intro = ({selectGame, updateActiveFrame, sounds}) => {
 
     const chooseGame = (e) => {
         selectGame(e.target.id)
-        updateActiveFrame('game-frame');
+        if (e.target.id === 'classic') {
+            updateActiveFrame('game-frame');
+        } else {
+            updateActiveFrame('extreme-frame');
+        }
         sounds.introSound(false);
     }
 
@@ -18,7 +22,7 @@ const Intro = ({selectGame, updateActiveFrame, sounds}) => {
                     <button id="classic" onClick={chooseGame} className="btn btn-vspace">Overload</button>    
                 </div>
                 <div>
-                    <button disabled id="extreme" onClick={chooseGame} className="btn btn-vspace">Extreme</button> 
+                    <button id="extreme" onClick={chooseGame} className="btn btn-vspace">Extreme</button> 
                 </div>
             </div>
 

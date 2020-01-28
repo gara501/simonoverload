@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {Howl} from 'howler'
 import Intro from './components/intro'
 import GameLayout from './components/root'
+import Extreme from './components/extreme'
 import Loading from './components/loading'
 import SoundComponent from './components/sound';
 import './game.css'
+import './matrix.css'
 import intro from './sounds/intro.wav';
 import sound1 from './sounds/jump1.mp3';
 import sound2 from './sounds/jump2.mp3';
@@ -143,7 +145,7 @@ function App() {
       sounds.gameSound(false);
     } else {
       sounds.introSound(false);
-      sounds.gameSound(true);
+      //sounds.gameSound(true);
     }
    
   }, [currentGame.active])
@@ -162,6 +164,12 @@ function App() {
       </div>
       <div className={currentGame.active + ' game-block generic-block'}>
         <GameLayout gameState={currentGame} 
+            updateRecord={updateRecord}
+            updateActiveFrame={updateActiveFrame}           
+            sounds={sounds} />
+      </div>
+      <div className={currentGame.active + ' extreme-block generic-block'}>
+        <Extreme gameState={currentGame} 
             updateRecord={updateRecord}
             updateActiveFrame={updateActiveFrame}           
             sounds={sounds} />

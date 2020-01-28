@@ -31,6 +31,12 @@
   z-index: 100;
 }
 
+.extreme-block.extreme-frame {
+  display: block;
+  opacity: 1;
+  z-index: 100;
+}
+
 /* Basic Figure */
 .circle {
   border: 50px solid #04142D;

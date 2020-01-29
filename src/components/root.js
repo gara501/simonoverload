@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import useInterval from './useInterval'
+import useInterval from '../hooks/useInterval'
 import Basic from './basic'
+import keyPress from '../hooks/keyboard'
 
 
 const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
@@ -10,6 +11,11 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         FINISHED: 'finished',
         USERPLAYING: 'userplaying'
     }
+
+    const keyTopLeft = keyPress('r');
+    const keyTopRight = keyPress('t');
+    const keyBottomLeft = keyPress('d');
+    const keyBottomRight = keyPress('f');
 
     const sections = {
         1: 'topleft',
@@ -62,7 +68,7 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         }
 
         const rand = Math.floor(Math.random() * 4) + 1;
-        setRotation(rotations[rand-1])        
+        setRotation(rotations[rand-1])
         
     }, [gameStatus])
 
@@ -70,11 +76,12 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
     const returnToIndex = () => {
         resetGame();
         updateActiveFrame('intro-frame');
-        sounds.gameSound(false);
+        sounds.fadeSound(false, sounds.bgGameSound);
     }
 
     const resetGame = () => {
         // Save in local storage only if the value is greater than before
+        setGameOverCss('');
         if (currentCounter > gameState.record) {
             localStorage.setItem('simonsays', JSON.stringify({record: currentCounter }));
             updateRecord(currentCounter);
@@ -86,8 +93,6 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
             isRunning: false,
             currentStatus: 'opened'
         })
-        setGameOverCss('');
-      
     }
 
     const clickButton = (option) => {
@@ -131,16 +136,16 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
     const playSound = (id) => {
         switch (id) {
             case 1:
-                sounds.topLeftSound(true);
+                sounds.playSound(true, sounds.topLeftSound)
                 break;
             case 2:
-                sounds.topRightSound(true);
+                sounds.playSound(true, sounds.topRightSound)
                 break;
             case 3:
-                sounds.bottomLeftSound(true);
+                sounds.playSound(true, sounds.bottomLeftSound)
                 break;
             default:
-                sounds.bottomRightSound(true);
+                sounds.playSound(true, sounds.bottomRightSound)
                 break;
         }
     }
@@ -174,10 +179,32 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
     const gameOver = () => {
         resetGame();
         setGameOverCss('animated heartBeat infinite');
-        sounds.gameSound(false);
-        sounds.gameOverSound(true);
+        sounds.fadeSound(false, sounds.bgGameSound)
+        sounds.playSound(true, sounds.gameOverSound)
         setButtonsHidden('');
         setReleaseSide(true);
+    }
+
+    // Keyboard Support
+    if (keyTopLeft) {
+        //clickButton(1);
+        //setSectionPressed('topLeft');
+        console.log('1')
+    }
+    if (keyTopRight) {
+        //clickButton(2);
+        //updateButtonPressed(2);
+        console.log('2')
+    }
+    if (keyBottomLeft) {
+        //clickButton(3);
+        //updateButtonPressed(3);
+        console.log('3')
+    }
+    if (keyBottomRight) {
+        //clickButton(4);
+        //updateButtonPressed(4);
+        console.log('4')
     }
 
     return (
@@ -204,7 +231,7 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
                 </div>
                 <div className={buttonsHidden + ' action-buttons'}>
                     <button id="return" onClick={startGame} className="btn btn-vspace start">Start</button> 
-                    <button id="return" onClick={returnToIndex} className="btn btn-vspace return">Return</button> 
+                    <button id="return" onClick={returnToIndex} className="btn btn-vspace btn-lspace return">Return</button> 
                 </div>
                 <div className={gameOverCss + ' gameover'}>
                     <h1>Game Over</h1>

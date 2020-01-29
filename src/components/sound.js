@@ -8,16 +8,20 @@ const Sound = ({gameState, sounds}) => {
         if (icon === 'volume_up') {
             setIcon('volume_off')
             if (gameState.active === 'intro-frame') {
-                sounds.introSound(false);
+                sounds.fadeSound(false, sounds.bgIntroSound)
             } else if(gameState.active === 'game-frame') {
-                sounds.gameSound(false);
+                sounds.fadeSound(false, sounds.bgGameSound)
+            } else if(gameState.active === 'extreme-frame') {
+                sounds.fadeSound(false, sounds.bgGameSound)
             }
         } else {
             setIcon('volume_up')
             if (gameState.active === 'intro-frame') {
-                sounds.introSound(true);
+                sounds.fadeSound(true, sounds.bgIntroSound)
             } else if(gameState.active === 'game-frame') {
-                sounds.gameSound(true);
+                sounds.fadeSound(true, sounds.bgGameSound)
+            } else if(gameState.active === 'extreme-frame') {
+                sounds.fadeSound(true, sounds.bgGameSound)
             }
         }
     }

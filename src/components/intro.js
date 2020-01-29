@@ -9,7 +9,7 @@ const Intro = ({selectGame, updateActiveFrame, sounds}) => {
         } else {
             updateActiveFrame('extreme-frame');
         }
-        sounds.introSound(false);
+        sounds.playSound(false, sounds.bgIntroSound)
     }
 
     return (

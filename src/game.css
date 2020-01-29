@@ -39,7 +39,7 @@
 
 /* Basic Figure */
 .circle {
-  border: 50px solid #04142D;
+  border: 30px solid #04142D;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -48,8 +48,8 @@
 }
 
 .innercircle {
-  height: 200px;
-  width: 200px;
+  height: 120px;
+  width: 120px;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -63,8 +63,8 @@
   background: #04142D;
   display: flex;
   flex-flow: row wrap;
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   justify-content: space-between;
   align-items: center;
   transition: 100ms all ease;
@@ -78,12 +78,11 @@
 
 .points {
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   position: absolute;
   z-index: 3;
-  top: 41%;
-  left: 51%;
-  transform: translateX(-50%) translateY(-50%);
+  top: 37%;
+  left: 45%;
 }
 
 .points span {
@@ -185,9 +184,10 @@
 
 .gameover {
   z-index: 5;
-  position: absolute;
+  position: fixed;
   top: 40%;
   text-transform: uppercase;
+  text-align: center;
   display: none;
 }
 
@@ -259,6 +259,17 @@
   transform: rotate(360deg);
 }
 
+/* Extreme mode*/
+.container-extreme .action-buttons {
+  justify-content: center;
+}
+
+.container-extreme .action-buttons .return {
+  margin-left: 20px;
+}
+
+/* End Extreme mode*/
+
 @media (max-width: 600px) {
   .game {
     justify-content: normal;
@@ -274,7 +285,8 @@
   }
   .points {
     font-size: 2rem;
-    top: 39%;
+    left: 45%;
+    top: 35%;
   }
   .indicators {
     top: -50px;
@@ -299,5 +311,13 @@
   }
   .action-buttons .btn{
     font-size: 1rem;
+  }
+  /*Extreme mode*/
+  .container-extreme .action-buttons {
+    width: 85%;
+  }
+  
+  .container-extreme .action-buttons .return {
+    margin-left: 0;
   }
 }

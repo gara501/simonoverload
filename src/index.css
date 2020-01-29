@@ -24,6 +24,15 @@ code {
   width: 100vw;
 }
 
+.container-extreme {
+  display: flex;
+  flex-flow: column;
+}
+
+.container-intro.container-extreme {
+  background: url('./images/bg.png') no-repeat;
+}
+
 .btn {
   background-color: #04142D; 
   border: 1px solid white;
@@ -42,6 +51,14 @@ code {
 
 .btn-vspace {
   margin: 20px 0;
+}
+
+.btn-lspace {
+  margin-left: 20px;
+}
+
+.btn-rspace {
+  margin-right: 20px;
 }
 
 .btn:hover {

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Howl} from 'howler'
 import Intro from './components/intro'
 import GameLayout from './components/root'
 import Extreme from './components/extreme'
@@ -7,13 +6,7 @@ import Loading from './components/loading'
 import SoundComponent from './components/sound';
 import './game.css'
 import './matrix.css'
-import intro from './sounds/intro.wav';
-import sound1 from './sounds/jump1.mp3';
-import sound2 from './sounds/jump2.mp3';
-import sound3 from './sounds/jump3.mp3';
-import sound4 from './sounds/jump4.mp3';
-import back from './sounds/back.wav';
-import soundGameOver from './sounds/gameover.wav';
+import SoundsManager from './components/soundsManager';
 
 function App() {
 
@@ -24,99 +17,7 @@ function App() {
     active: 'intro-frame'
   });
 
-  const bgIntrosound =  new Howl({
-    src: [intro],
-    loop: true,
-    onplayerror: function() {
-      bgIntrosound.once('unlock', function() {
-        bgIntrosound.play();
-      });
-    }
-  });
-
-  const bgGameSound =  new Howl({
-    src: [back],
-    volume: 0.5,
-    loop: true,
-    onload: () => {
-    
-    }
-  });
-
-  const topLeftSound =  new Howl({
-    src: [sound1],
-    onload: () => {
-     
-    }
-  });
-
-  const topRightSound =  new Howl({
-    src: [sound2],
-    onload: () => {
-     
-    }
-  });
-
-  const bottomLeftSound =  new Howl({
-    src: [sound3],
-    onload: () => {
-      
-    }
-  });
-
-  const bottomRightSound =  new Howl({
-    src: [sound4],
-    onload: () => {
-      
-    }
-  });
-
-  const goversound =  new Howl({
-    src: [soundGameOver],
-    onload: () => {
-      
-    }
-  });
-
-  const sounds = {
-    activateSound: (option, sound) => {
-      if (option) {
-        sound.play();
-        
-      } else {
-        sound.stop();
-      }
-    },
-    fadeSound: (option, sound) => {
-      if (option) {
-        let isSound = sound.play();
-        sound.fade(0, 1, 1000, isSound);
-      } else {
-        sound.stop();
-      }
-    },
-    introSound: (option) => {
-      sounds.fadeSound(option, bgIntrosound);
-    },
-    gameSound: (option) => {
-      sounds.fadeSound(option, bgGameSound);
-    },
-    gameOverSound: (option) => {
-      sounds.activateSound(option, goversound);
-    },
-    topLeftSound: (option) => {
-      sounds.activateSound(option, topLeftSound);
-    },
-    topRightSound: (option) => {
-      sounds.activateSound(option, topRightSound);
-    },
-    bottomLeftSound: (option) => {
-      sounds.activateSound(option, bottomLeftSound);
-    },
-    bottomRightSound: (option) => {
-      sounds.activateSound(option, bottomRightSound);
-    }
-  }
+  const soundsM = new SoundsManager();
 
   const updateRecord = (newValue) => {
     setCurrentGame({
@@ -141,38 +42,40 @@ function App() {
 
   useEffect(() => {
     if (currentGame.active === 'intro-frame') {
-      sounds.introSound(true);
-      sounds.gameSound(false);
+      soundsM.fadeSound(true, soundsM.bgIntroSound)
+      soundsM.fadeSound(false, soundsM.bgGameSound)
     } else {
-      sounds.introSound(false);
-      //sounds.gameSound(true);
+      soundsM.fadeSound(false, soundsM.bgIntroSound)
+      soundsM.fadeSound(true, soundsM.bgGameSound)
     }
    
-  }, [currentGame.active])
+  }, [currentGame.active, soundsM])
 
   return (
     <div>
-      <SoundComponent gameState={currentGame} sounds={sounds} />
+      <SoundComponent gameState={currentGame} sounds={soundsM}/>
       
       <Loading />
       
       <div className={currentGame.active + ' intro-block generic-block' }>
         <Intro 
-            selectGame={selectGame} 
-            sounds={sounds}
+            selectGame={selectGame}
+            sounds={soundsM}
             updateActiveFrame={updateActiveFrame} />
       </div>
       <div className={currentGame.active + ' game-block generic-block'}>
         <GameLayout gameState={currentGame} 
             updateRecord={updateRecord}
+            sounds={soundsM}
             updateActiveFrame={updateActiveFrame}           
-            sounds={sounds} />
+            />
       </div>
       <div className={currentGame.active + ' extreme-block generic-block'}>
         <Extreme gameState={currentGame} 
             updateRecord={updateRecord}
+            sounds={soundsM}
             updateActiveFrame={updateActiveFrame}           
-            sounds={sounds} />
+             />
       </div>
     </div>
   );

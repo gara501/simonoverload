@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useInterval from '../hooks/useInterval'
 import Basic from './basic'
-import keyPress from '../hooks/keyboard'
 
 
 const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
@@ -11,11 +10,6 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         FINISHED: 'finished',
         USERPLAYING: 'userplaying'
     }
-
-    const keyTopLeft = keyPress('r');
-    const keyTopRight = keyPress('t');
-    const keyBottomLeft = keyPress('d');
-    const keyBottomRight = keyPress('f');
 
     const sections = {
         1: 'topleft',
@@ -185,28 +179,6 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
         setReleaseSide(true);
     }
 
-    // Keyboard Support
-    if (keyTopLeft) {
-        //clickButton(1);
-        //setSectionPressed('topLeft');
-        console.log('1')
-    }
-    if (keyTopRight) {
-        //clickButton(2);
-        //updateButtonPressed(2);
-        console.log('2')
-    }
-    if (keyBottomLeft) {
-        //clickButton(3);
-        //updateButtonPressed(3);
-        console.log('3')
-    }
-    if (keyBottomRight) {
-        //clickButton(4);
-        //updateButtonPressed(4);
-        console.log('4')
-    }
-
     return (
         <div className="container container-intro container-game">
             <div className="game">
@@ -230,8 +202,8 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
                     <p><span>Your record: </span><span>{gameState.record}</span></p>
                 </div>
                 <div className={buttonsHidden + ' action-buttons'}>
-                    <button id="return" onClick={startGame} className="btn btn-vspace start">Start</button> 
-                    <button id="return" onClick={returnToIndex} className="btn btn-vspace btn-lspace return">Return</button> 
+                    <button id="return" onClick={startGame} className="btn btn-vspace start no-space-sides-mobile">Start</button> 
+                    <button id="return" onClick={returnToIndex} className="btn btn-vspace btn-lspace return no-space-sides-mobile">Return</button> 
                 </div>
                 <div className={gameOverCss + ' gameover'}>
                     <h1>Game Over</h1>

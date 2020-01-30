@@ -1,14 +1,18 @@
 import React, {useState, useEffect, useRef} from 'react';
 import keyPress from '../hooks/keyboard';
+import { useKeyUp, useKeyDown, useKeyCombo } from "react-keyboard-input-hook";
 
 const Basic = ({ side, clickAction, sounds, autoPressed, releaseSide }) => {
 
     const [isPressed, setIsPressed] = useState('');
-    const keyTopLeft = keyPress('r');
-    const keyTopRight = keyPress('t');
-    const keyBottomLeft = keyPress('d');
-    const keyBottomRight = keyPress('f');
     const refContainer = useRef();
+
+    const sides = {
+        TOPLEFT: 'topleft',
+        TOPRIGHT: 'topright',
+        BOTTOMLEFT: 'bottomleft',
+        BOTTOMRIGHT: 'bottomright'
+    };
 
     useEffect(() => {
         if (side === autoPressed) {
@@ -24,59 +28,86 @@ const Basic = ({ side, clickAction, sounds, autoPressed, releaseSide }) => {
                 setIsPressed('')
             }, 2000)
         }
-        console.log('ISPRESSED', this);
     }, [autoPressed, releaseSide, isPressed, side])
 
     const handlePress = (e) => {
         let button = e.target;
-        button.classList.add('pressed')
+        button.classList.add('pressed');
+        handlePressed(e.target.className)
+        setTimeout(() => {
+            button.classList.remove('pressed');
+        }, 100)
+
+        //clickAction(selected);
+    }
+
+    const handlePressed = (option) => {
         let selected = 0;
-        if (e.target.className.includes('topleft')) {
+        
+        if (option.includes(sides.TOPLEFT)) {
             selected = 1;
             sounds.playSound(true, sounds.topLeftSound)
         }
-        if (e.target.className.includes('topright')) {
+        if (option.includes(sides.TOPRIGHT)) {
             selected = 2;
             sounds.playSound(true, sounds.topRightSound)
         }
-        if (e.target.className.includes('bottomleft')) {
+        if (option.includes(sides.BOTTOMLEFT)) {
             selected = 3;
             sounds.playSound(true, sounds.bottomLeftSound)
         }
-        if (e.target.className.includes('bottomright')) {
+        if (option.includes(sides.BOTTOMRIGHT)) {
             selected = 4;
             sounds.playSound(true, sounds.bottomRightSound)
         }
-        
-        setTimeout(() => {
-            button.classList.remove('pressed')
-        }, 100)
-
         clickAction(selected);
     }
 
-    const handleKeyboard = (reference) => {
-        let selected = 0;
-        if (reference.className.includes('topleft')){
-            reference.classList.add('pressed')
-            selected = 1;
-            sounds.playSound(true, sounds.topLeftSound)
+    const handleKeyboard = (key, container) => {
+        if (key === sides.TOPLEFT) {
+            if (container.classList.contains(sides.TOPLEFT)){
+                container.classList.add('pressed');
+                handlePressed(sides.TOPLEFT)
+            }
+        }
+        if (key === sides.TOPRIGHT) {
+            if (container.classList.contains(sides.TOPRIGHT)){
+                container.classList.add('pressed');
+                handlePressed(sides.TOPRIGHT)
+            }
+        }
+        if (key === sides.BOTTOMLEFT) {
+            if (container.classList.contains(sides.BOTTOMLEFT)){
+                container.classList.add('pressed');
+                handlePressed(sides.BOTTOMLEFT)
+            }
+        }
+        if (key === sides.BOTTOMRIGHT) {
+            if (container.classList.contains(sides.BOTTOMRIGHT)){
+                container.classList.add('pressed');
+                handlePressed(sides.BOTTOMRIGHT)
+            }
         }
         setTimeout(() => {
-            reference.classList.remove('pressed')
+            container.classList.remove('pressed');
         }, 100)
-
-        clickAction(selected);
     }
 
-    if (keyTopLeft) {
-        //clickButton(1);
-        //setSectionPressed('topLeft');
-        console.log(refContainer.current)
-        handleKeyboard(refContainer.current)
-
-        
-    }
+    const handleKeyDown = ({ keyName }) => {
+        if (keyName === 'KeyG') {
+            handleKeyboard(sides.TOPLEFT, refContainer.current);
+        }
+        if (keyName === 'KeyR') {
+            handleKeyboard(sides.TOPRIGHT, refContainer.current);
+        }
+        if (keyName === 'KeyY') {
+            handleKeyboard(sides.BOTTOMLEFT, refContainer.current);
+        }
+        if (keyName === 'KeyB') {
+            handleKeyboard(sides.BOTTOMRIGHT, refContainer.current);
+        } 
+    };
+    useKeyDown(handleKeyDown);
 
     const handleTouch = (e) => {
         e.target.classList.add('pressed')

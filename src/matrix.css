@@ -12,7 +12,6 @@
 }
 
 .bl {
-  border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
@@ -24,6 +23,7 @@
   background: radial-gradient(circle, rgba(250,228,228,1) 0%, rgba(187,153,153,1) 80%);
 }
 .bl1.hit {
+  border-radius: 5px;
   background: radial-gradient(circle, rgba(255,255,255,1) 10%, rgba(187,153,153,1) 90%);
 }
 

@@ -65,8 +65,8 @@ const Extreme = ({ side, clickAction, sounds, autoPressed, releaseSide }) => {
             <div className="bl bl9" onClick={handlePress}>9</div>
         </div>
         <div className={buttonsHidden + ' action-buttons'}>
-            <button id="return" onClick={startGame} className="btn btn-vspace start">Start</button> 
-            <button id="return" onClick={returnToIndex} className="btn btn-vspace return">Return</button> 
+            <button id="return" onClick={startGame} className="btn btn-vspace start no-space-sides-mobile">Start</button> 
+            <button id="return" onClick={returnToIndex} className="btn btn-vspace return no-space-sides-mobile">Return</button> 
         </div>
       </div>
     )

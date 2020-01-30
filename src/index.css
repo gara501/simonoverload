@@ -11,13 +11,43 @@ code {
     monospace;
 }
 
+.parallax-bg {
+  height: 100vh;
+  background-image: url('./images/paralax/sky.png');
+  background-position:top left;
+  background-repeat:no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100vw;
+  z-index: 1;
+}
+
+.parallax-bg-2 {
+  background-image: url('./images/paralax/cloud_lonely.png');
+  background-position: 20% 30%;
+  background-repeat:no-repeat;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+}
+
+.parallax-bg-3 {
+  background-image: url('./images/paralax/clouds_MG_1.png');
+  background-position: 30% 30%;
+  background-repeat:no-repeat;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+}
+
 .container {
   height: 100vh;
 }
 
 .container-intro {
-  background: url('./images/bg2.jpg') no-repeat;
-  background-size: cover;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,5 +160,10 @@ code {
     font-size: 2.5rem;
     line-height: 3rem;
     text-align: center;
+  }
+  
+  .no-space-sides-mobile {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

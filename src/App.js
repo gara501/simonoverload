@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Intro from './components/intro'
 import GameLayout from './components/root'
 import Extreme from './components/extreme'
@@ -16,7 +16,7 @@ function App() {
     currentPoints: 0,
     active: 'intro-frame'
   });
-
+  
   const soundsM = new SoundsManager();
 
   const updateRecord = (newValue) => {
@@ -48,6 +48,7 @@ function App() {
       soundsM.fadeSound(false, soundsM.bgIntroSound)
       soundsM.fadeSound(true, soundsM.bgGameSound)
     }
+    
    
   }, [currentGame.active, soundsM])
 

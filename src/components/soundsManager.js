@@ -1,6 +1,5 @@
 import React from 'react';
 import {Howl} from 'howler';
-import intro from '../sounds/intro.wav';
 import sound1 from '../sounds/jump1.mp3';
 import sound2 from '../sounds/jump2.mp3';
 import sound3 from '../sounds/jump3.mp3';
@@ -14,24 +13,26 @@ import bl6 from '../sounds/bl6.mp3';
 import bl7 from '../sounds/bl7.mp3';
 import bl8 from '../sounds/bl8.mp3';
 import bl9 from '../sounds/bl9.mp3';
-import back from '../sounds/back.wav';
+import bgmusic from '../sounds/bgmusic.mp3';
+import intromusic from '../sounds/intromusic.mp3';
 import soundGameOver from '../sounds/gameover.wav';
 
 class SoundsManager extends React.Component {
   constructor(){
     super();
     this.bgIntroSound =  new Howl({
-      src: [intro],
+      src: [intromusic],
       loop: true,
       onplayerror: function() {
         this.bgIntrosound.once('unlock', function() {
+          console.log('ON ERror')
           this.bgIntrosound.play();
         });
       }
     });
 
     this.bgGameSound =  new Howl({
-      src: [back],
+      src: [bgmusic],
       volume: 0.5,
       loop: true,
       onplayerror: function() {
@@ -60,22 +61,29 @@ class SoundsManager extends React.Component {
   }
 
   fadeSound(option, soundObject){
-    console.log('fade SOUND', soundObject)
     let soundReference = soundObject.play();
     if (option) {
       soundObject.fade(0, 1, soundReference)
+      console.log('Sound Play Fade')
     } else {
       soundObject.stop();
     }
   }
 
   playSound(option, soundObject){
-    console.log('PLAY SOUND', soundObject)
+    console.log('playSound', option, soundObject)
     if (option) {
       soundObject.play();
+      console.log('Sound Play')
     } else {
       soundObject.stop();
     }
+  }
+
+  stopAllSounds() {
+    console.log('STOP ALL SOUNDS');
+    this.bgIntroSound.stop();
+    this.bgGameSound.stop();
   }
 }
 

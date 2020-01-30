@@ -1,28 +1,35 @@
 import React, {useState} from 'react'
 
-const Sound = ({gameState, sounds}) => {
+const Sound = ({dispatch}) => {
     
     const [icon, setIcon] = useState('volume_up');
 
     const handleClick = (e) => {
         if (icon === 'volume_up') {
             setIcon('volume_off')
-            if (gameState.active === 'intro-frame') {
+            dispatch({type: 'MUTE', muted: true})
+/*
+            if (store.active === 'intro-frame') {
                 sounds.fadeSound(false, sounds.bgIntroSound)
-            } else if(gameState.active === 'game-frame') {
+            } else if(store.active === 'game-frame') {
                 sounds.fadeSound(false, sounds.bgGameSound)
-            } else if(gameState.active === 'extreme-frame') {
+            } else if(store.active === 'extreme-frame') {
                 sounds.fadeSound(false, sounds.bgGameSound)
             }
+            */
         } else {
             setIcon('volume_up')
-            if (gameState.active === 'intro-frame') {
+            // sounds.stopAllSounds();
+            dispatch({type: 'MUTE', muted: false})
+            /*
+            if (store.active === 'intro-frame') {
                 sounds.fadeSound(true, sounds.bgIntroSound)
-            } else if(gameState.active === 'game-frame') {
+            } else if(store.active === 'game-frame') {
                 sounds.fadeSound(true, sounds.bgGameSound)
-            } else if(gameState.active === 'extreme-frame') {
+            } else if(store.active === 'extreme-frame') {
                 sounds.fadeSound(true, sounds.bgGameSound)
             }
+            */
         }
     }
 

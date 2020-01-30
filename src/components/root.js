@@ -3,7 +3,7 @@ import useInterval from '../hooks/useInterval'
 import Basic from './basic'
 
 
-const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
+const Root = ({sounds, store, dispatch}) => {
     
     const status = {
         STARTED: 'started',
@@ -69,16 +69,18 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
 
     const returnToIndex = () => {
         resetGame();
-        updateActiveFrame('intro-frame');
+        // updateActiveFrame('intro-frame');
+        dispatch({type: 'INTRO'})
         sounds.fadeSound(false, sounds.bgGameSound);
     }
 
     const resetGame = () => {
         // Save in local storage only if the value is greater than before
         setGameOverCss('');
-        if (currentCounter > gameState.record) {
+        if (currentCounter > store.record) {
             localStorage.setItem('simonsays', JSON.stringify({record: currentCounter }));
-            updateRecord(currentCounter);
+            //updateRecord(currentCounter);
+            dispatch({type: 'RECORD', currentCounter})
         }
         setCurrentCounter(0);
         setUserCounter(1);
@@ -181,8 +183,11 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
 
     return (
         <div className="container container-intro container-game">
+            <div className="indicators">
+                <p><span>Your record: </span><span>{store.record}</span></p>
+            </div>
+            <p className="playtime">Time left: {playTime}</p>
             <div className="game">
-                <p className="playtime">Time left: {playTime}</p>
                 <p className="points score"><span>{currentCounter}</span></p>
                 <div className={rotation + " circle"}>
                     <div className="innercircle"></div>
@@ -198,9 +203,7 @@ const Root = ({gameState, updateRecord, sounds, updateActiveFrame}) => {
                         <Basic side="bottomright" sounds={sounds} releaseSide={releaseSide} clickAction={clickButton} autoPressed={sectionPressed} />
                     </div>
                 </div>
-                <div className="indicators">
-                    <p><span>Your record: </span><span>{gameState.record}</span></p>
-                </div>
+                
                 <div className={buttonsHidden + ' action-buttons'}>
                     <button id="return" onClick={startGame} className="btn btn-vspace start no-space-sides-mobile">Start</button> 
                     <button id="return" onClick={returnToIndex} className="btn btn-vspace btn-lspace return no-space-sides-mobile">Return</button> 

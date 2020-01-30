@@ -1,20 +1,29 @@
+:root {
+  --text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+
 .intro {
-    display: flex;
-    flex-flow: column;
-    height: 100vh;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
+  background-image: url('./images/brain2.jpg');
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-position: center center;
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
   }
 
 .instructions {
+  background-color: #04142D;
   border: 1px dashed white;
   color: white;
   margin: 10px;
-  padding: 5px;
+  padding: 5px 20px;
   line-height: 2rem;
   text-align: center;
-  text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+  text-shadow: var(--text-shadow);
 }
 
 .intro-buttons {
@@ -24,11 +33,9 @@
 }
 
 .generic-block {
-  display: none;
   height: 100vh;
   position: absolute;
   left: 0;
-  opacity: 0;
   top: 0;
   width: 100vw;
 }
@@ -104,13 +111,16 @@
 }
 
 .container-game {
+  background-image: url('./images/aqua.png');
+  background-repeat:no-repeat;
+  background-size: cover;
   position: relative;
 }
 
 .indicators {
   position: absolute;
   top: 5px;
-  left: 0;
+  left: 50px;
 }
 
 .indicators p, .indicators span {
@@ -193,7 +203,7 @@
   font-weight: 1.5rem;
   position: absolute;
   top: 50px;
-  left: 0;
+  left: 50px;
 }
 
 .gameover {
@@ -303,14 +313,13 @@
     top: 35%;
   }
   .indicators {
-    top: -50px;
     left: auto;
   }
   .indicators span {
     font-size: 1rem;
   }
   .playtime {
-    top: 0;
+    top: 50px;
     left: auto;
   }
   .gameover {

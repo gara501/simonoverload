@@ -8,7 +8,7 @@ const Loading = ({updateActiveFrame, store, dispatch}) => {
         setTimeout(() => {
             setShow('');
             dispatch({type: 'INTRO'})
-        }, 3000)
+        }, 4000)
     },[])
     
     return (

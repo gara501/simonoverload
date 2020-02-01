@@ -60,6 +60,7 @@ function reducer(state, action) {
       return state;
   }
 }
+
 const soundsM = new SoundsManager();
 
 function App() {
@@ -81,7 +82,7 @@ function App() {
       } else {
         soundsM.playSound(false, soundsM.bgGameSound)
       }
-    }   
+    }
   }, [store.currentState, store.muted])
 
   const componentToShow=()=> {
@@ -100,7 +101,7 @@ function App() {
             dispatch={dispatch}
           />
     } else if (option === 'loading-frame'){
-      return <Loading store={store} dispatch={dispatch} />
+      return <Loading dispatch={dispatch} soundsM={soundsM} />
     } else {
       return <Intro  
             sounds={soundsM}

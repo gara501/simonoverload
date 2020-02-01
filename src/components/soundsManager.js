@@ -17,6 +17,7 @@ import soundGameOver from '../sounds/gameover.wav';
 class SoundsManager extends React.Component {
   constructor(){
     super();
+    this.soundsLoaded = 0;
     this.bgIntroSound =  new Howl({
       src: [intromusic],
       loop: true,
@@ -25,6 +26,9 @@ class SoundsManager extends React.Component {
           console.log('ON ERror')
           this.bgIntrosound.play();
         });
+      },
+      onload: function () {
+        this.soundsLoaded += 1;
       }
     });
 
@@ -36,6 +40,9 @@ class SoundsManager extends React.Component {
         this.bgGameSound.once('unlock', function() {
           this.bgGameSound.play();
         });
+      },
+      onload: function () {
+        this.soundsLoaded += 1;
       }
     });
   
@@ -54,11 +61,14 @@ class SoundsManager extends React.Component {
     this.b6Sound =  new Howl({ src: [bl6] });
   }
 
+  loadSoundsState() {
+    return this.soundsLoaded;
+  }
+
   fadeSound(option, soundObject){
     let soundReference = soundObject.play();
     if (option) {
       soundObject.fade(0, 1, soundReference)
-      console.log('Sound Play Fade')
     } else {
       soundObject.stop();
     }
@@ -68,14 +78,12 @@ class SoundsManager extends React.Component {
     console.log('playSound', option, soundObject)
     if (option) {
       soundObject.play();
-      console.log('Sound Play')
     } else {
       soundObject.stop();
     }
   }
 
   stopAllSounds() {
-    console.log('STOP ALL SOUNDS');
     this.bgIntroSound.stop();
     this.bgGameSound.stop();
   }

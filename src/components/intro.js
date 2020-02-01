@@ -26,6 +26,7 @@ const Intro = ({selectGame, sounds, store, dispatch}) => {
                 </div>
                 <div className="instructions">
                     <p>To play with keyboard use keys: Y, G, B, R</p>
+                    <p>Extreme mode: Q,W,E,A,S,D</p>
                 </div>
                 <div className="intro-buttons">
                     <button id="classic" onClick={chooseGame} className="btn btn-vspace">Overload</button>    

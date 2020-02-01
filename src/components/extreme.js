@@ -111,9 +111,6 @@ const Extreme = ({ side, dispatch, sounds, releaseSide }) => {
 
     const playerPlay = (key) => {
         if (!extremeState.isRunning && extremeState.gameState === 'started') {
-            console.log('PLAYER MOVE', key)
-            console.log('secuence', secuence);
-            console.log('secuence[playerHitCounter-1]', secuence[playerHitCounter-1]);
             if (key === secuence[playerHitCounter-1]) {
                 if (playerHitCounter === secuence.length) {
                     playerHitCounter = 1;
@@ -222,21 +219,27 @@ const Extreme = ({ side, dispatch, sounds, releaseSide }) => {
     const handleKeyDown = ({ keyName }) => {
         if (keyName === 'KeyQ') {
             setButtonPressed('bl1');
+            playerPlay('bl1');
         }
         if (keyName === 'KeyW') {
             setButtonPressed('bl2');
+            playerPlay('bl2');
         }
         if (keyName === 'KeyE') {
             setButtonPressed('bl3');
+            playerPlay('bl3');
         }
         if (keyName === 'KeyA') {
             setButtonPressed('bl4');
+            playerPlay('bl4');
         } 
         if (keyName === 'KeyS') {
             setButtonPressed('bl5');
+            playerPlay('bl5');
         } 
         if (keyName === 'KeyD') {
             setButtonPressed('bl6');
+            playerPlay('bl6');
         }
     };
 

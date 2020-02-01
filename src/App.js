@@ -12,7 +12,7 @@ const initialState = {
   game: '',
   record: (localStorage.getItem('simonsays') ? JSON.parse(localStorage.getItem('simonsays')).record: 0),
   currentPoints: 0,
-  bgmusic: '',
+  isPlayingMusic: false,
   active: 'loading-frame',
   gameType: '',
   muted: false,
@@ -63,42 +63,25 @@ const soundsM = new SoundsManager();
 
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState);
-
   
   
-  useEffect(() => {
-    console.log('STORE MUTED', store.muted)
-    if (store.muted) {
-      soundsM.playSound(false, soundsM.bgIntroSound)
-    } else {
-      soundsM.playSound(true, soundsM.bgIntroSound)
-    }
-  }, [store.muted])
-
   useEffect(() => {
     if (store.currentState === 'intro') {
-      console.log('store.currentState', store.currentState);
       if (!store.muted) {
-        //soundsM.playSound(true, soundsM.bgIntroSound)
+        soundsM.playSound(false, soundsM.bgGameSound)
+        soundsM.playSound(true, soundsM.bgIntroSound)       
       } else {
-        //soundsM.playSound(false, soundsM.bgIntroSound)
+        soundsM.playSound(false, soundsM.bgIntroSound)
       }
-      
-      //soundsM.fadeSound(true, soundsM.bgGameSound)
-      //soundsM.fadeSound(true, soundsM.bgIntroSound)
-    }
-    //if (currentGame.active === 'intro-frame') {
-      
-      //soundsM.fadeSound(true, soundsM.bgIntroSound)
-      // soundsM.fadeSound(true, soundsM.bgIntroSound)
-      //soundsM.fadeSound(false, soundsM.bgGameSound)
-    //} else {
-      //soundsM.fadeSound(false, soundsM.bgIntroSound)
-      //soundsM.fadeSound(true, soundsM.bgGameSound)
-    //}
-    
-   
-  }, [store.currentState])
+    } else if (store.currentState === 'overload' || store.currentState === 'extreme') {
+      if (!store.muted) {
+        soundsM.playSound(false, soundsM.bgIntroSound)
+        soundsM.playSound(true, soundsM.bgGameSound)
+      } else {
+        soundsM.playSound(false, soundsM.bgGameSound)
+      }
+    }   
+  }, [store.currentState, store.muted])
 
   const componentToShow=()=> {
     const option = store.active;

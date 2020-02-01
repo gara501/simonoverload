@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import keyPress from '../hooks/keyboard';
-import { useKeyUp, useKeyDown, useKeyCombo } from "react-keyboard-input-hook";
+import { useKeyDown } from "react-keyboard-input-hook";
 
 const Basic = ({ side, clickAction, sounds, autoPressed, releaseSide }) => {
 

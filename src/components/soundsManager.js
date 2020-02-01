@@ -4,15 +4,12 @@ import sound1 from '../sounds/jump1.mp3';
 import sound2 from '../sounds/jump2.mp3';
 import sound3 from '../sounds/jump3.mp3';
 import sound4 from '../sounds/jump4.mp3';
-import bl1 from '../sounds/bl1.mp3';
-import bl2 from '../sounds/bl2.mp3';
-import bl3 from '../sounds/bl3.mp3';
-import bl4 from '../sounds/bl4.mp3';
-import bl5 from '../sounds/bl5.mp3';
-import bl6 from '../sounds/bl6.mp3';
-import bl7 from '../sounds/bl7.mp3';
-import bl8 from '../sounds/bl8.mp3';
-import bl9 from '../sounds/bl9.mp3';
+import bl1 from '../sounds/bl1.wav';
+import bl2 from '../sounds/bl2.wav';
+import bl3 from '../sounds/bl3.wav';
+import bl4 from '../sounds/bl4.wav';
+import bl5 from '../sounds/bl5.wav';
+import bl6 from '../sounds/bl6.wav';
 import bgmusic from '../sounds/bgmusic.mp3';
 import intromusic from '../sounds/intromusic.mp3';
 import soundGameOver from '../sounds/gameover.wav';
@@ -33,7 +30,7 @@ class SoundsManager extends React.Component {
 
     this.bgGameSound =  new Howl({
       src: [bgmusic],
-      volume: 0.5,
+      volume: 0.4,
       loop: true,
       onplayerror: function() {
         this.bgGameSound.once('unlock', function() {
@@ -55,9 +52,6 @@ class SoundsManager extends React.Component {
     this.b4Sound =  new Howl({ src: [bl4] });
     this.b5Sound =  new Howl({ src: [bl5] });
     this.b6Sound =  new Howl({ src: [bl6] });
-    this.b7Sound =  new Howl({ src: [bl7] });
-    this.b8Sound =  new Howl({ src: [bl8] });
-    this.b9Sound =  new Howl({ src: [bl9] });
   }
 
   fadeSound(option, soundObject){

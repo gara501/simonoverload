@@ -35,20 +35,24 @@ code {
 }
 
 .btn {
-  background-color: #04142D; 
-  border: 1px solid white;
-  border-radius: 30px;
-  color: white;
-  font-size: 1.5rem;
+  border-radius: 60px;
+  box-shadow: #ff5959 1px 1px 20px 0px;
+  color: #fff;
   font-family: "Press Start 2P";
-  letter-spacing: -.01719rem;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  padding: 20px;
+  font-size: 2rem;
+  background-color: #000;
+  text-shadow: 1px 1px 20px #000000;
+  border: inset #fff 9px;
+  cursor: pointer;
   text-transform: uppercase;
-  transition: 300ms linear all;
-  text-shadow: var(--text-shadow);
+  letter-spacing: -.01719rem;
+  text-align: center;
+  transition: 200ms linear all;
+}
+  
+.btn:hover {
+  background: #2F3848;
 }
 
 .btn-vspace {
@@ -61,12 +65,6 @@ code {
 
 .btn-rspace {
   margin-right: 20px;
-}
-
-.btn:hover {
-  background-color: #2F4260; 
-  cursor: pointer;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .btn:disabled {
@@ -128,6 +126,9 @@ code {
 }
 
 @media (max-width: 600px) {
+  .btn {
+    font-size: 1rem;
+  }
   .title {
     font-size: 2.5rem;
     line-height: 3rem;

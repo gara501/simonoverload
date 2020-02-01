@@ -8,9 +8,25 @@
   grid-template-rows: repeat(2, 120px);
   grid-template-columns: repeat(3, 120px);
   grid-gap: 20px;
+  grid-template-areas: 
+  "bl1 bl2 bl3"
+  "bl4 bl5 bl6";
   margin: 0 auto;
   padding: 20px;
+  transition: 300ms linear all;
   width: auto;
+}
+
+.level2 .bl {
+  animation: colorChange 3s infinite;
+}
+
+.level3 .bl {
+  animation: colorChange 1s infinite;
+}
+
+.level4 .bl {
+  animation: colorChange 500ms infinite;
 }
 
 .bl {
@@ -40,9 +56,25 @@
 }
 
 .bl1 {
+  grid-area: bl1;
   background-color: #000;
-  /*background: radial-gradient(circle, rgba(250,228,228,1) 0%, rgba(187,153,153,1) 80%);*/
 }
+.bl2 {
+  grid-area: bl2;
+}
+.bl3 {
+  grid-area: bl3;
+}
+.bl4 {
+  grid-area: bl4;
+}
+.bl5 {
+  grid-area: bl5;
+}
+.bl6 {
+  grid-area: bl6;
+}
+
 .bl1.hit {
   background: radial-gradient(circle, rgba(255,255,255,1) 10%, rgba(187,153,153,1) 90%);
 }
@@ -87,6 +119,33 @@
     grid-column-gap: 10px;
     grid-template-rows: repeat(3, 120px);
     grid-template-columns: repeat(2, 120px);
+    grid-template-areas: 
+    "bl1 bl2"
+    "bl3 bl4"
+    "bl5 bl6";
     width: 70%;
+  }
+}
+
+
+@keyframes colorChange {
+  0% {
+      background-color: hsl(36, 100%, 64%);
+  }
+  
+  25% {
+      background-color: hsl(76, 100%, 64%);
+  }
+      
+  50% {
+      background-color: hsl(206, 100%, 64%);
+  }
+  
+  75% {
+      background-color: hsl(305, 100%, 64%);
+  }
+  
+  100% {
+      background-color: hsl(36, 100%, 64%);
   }
 }

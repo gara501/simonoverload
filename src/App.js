@@ -8,6 +8,7 @@ import './game.css'
 import './matrix.css'
 import SoundsManager from './components/soundsManager';
 
+
 const initialState = {
   game: '',
   record: (localStorage.getItem('simonsays') ? JSON.parse(localStorage.getItem('simonsays')).record: 0),

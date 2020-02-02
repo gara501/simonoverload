@@ -259,7 +259,7 @@ const Extreme = ({ side, dispatch, sounds, releaseSide }) => {
         </div>
         <div className={buttonsHidden + ' action-buttons'}>
             <button id="return" onClick={startGame} className="btn btn-vspace start no-space-sides-mobile">Start</button> 
-            <button id="return" onClick={returnToIndex} className="btn btn-vspace return no-space-sides-mobile">Return</button> 
+            <button id="return" onClick={returnToIndex} className="btn return no-space-sides-mobile">Return</button> 
         </div>
         <div className={gameOverCss + ' gameover'}>
             <h1>Game Over</h1>

@@ -36,10 +36,9 @@ code {
 
 .btn {
   border-radius: 60px;
-  box-shadow: #ff5959 1px 1px 20px 0px;
   color: #fff;
   font-family: "Press Start 2P";
-  padding: 20px;
+  padding: 15px;
   font-size: 2rem;
   background-color: #000;
   text-shadow: 1px 1px 20px #000000;
@@ -56,15 +55,15 @@ code {
 }
 
 .btn-vspace {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .btn-lspace {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .btn-rspace {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .btn:disabled {

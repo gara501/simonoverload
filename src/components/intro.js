@@ -30,7 +30,7 @@ const Intro = ({selectGame, sounds, store, dispatch}) => {
                 </div>
                 <div className="intro-buttons">
                     <button id="classic" onClick={chooseGame} className="btn btn-vspace">Overload</button>    
-                    <button id="extreme" onClick={chooseGame} className="btn btn-vspace">Extreme</button> 
+                    <button id="extreme" onClick={chooseGame} className="btn">Extreme</button> 
                 </div>
                 
             </div>

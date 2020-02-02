@@ -123,6 +123,7 @@
     "bl1 bl2"
     "bl3 bl4"
     "bl5 bl6";
+    justify-content: center;
     width: 70%;
   }
 }

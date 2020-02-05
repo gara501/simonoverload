@@ -102,8 +102,9 @@
   font-size: 3rem;
   position: absolute;
   z-index: 3;
-  top: 35%;
-  left: 46%;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .points span {
@@ -310,8 +311,8 @@
   }
   .points {
     font-size: 2rem;
-    left: 46%;
-    top: 35%;
+    left: 50%;
+    top: 44%;
   }
   .indicators {
     left: auto;

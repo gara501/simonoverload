@@ -117,14 +117,19 @@
   .matrix {
     grid-row-gap: 10px;
     grid-column-gap: 10px;
-    grid-template-rows: repeat(3, 120px);
-    grid-template-columns: repeat(2, 120px);
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(2, 100px);
     grid-template-areas: 
     "bl1 bl2"
     "bl3 bl4"
     "bl5 bl6";
     justify-content: center;
     width: 70%;
+  }
+
+  .bl::after{
+    height: 80px;
+    width: 80px;
   }
 }
 

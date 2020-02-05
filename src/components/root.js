@@ -187,8 +187,8 @@ const Root = ({sounds, store, dispatch}) => {
                 <p><span>Your record: </span><span>{store.record}</span></p>
             </div>
             <p className="playtime">Time left: {playTime}</p>
+            <p className="points score"><span>{currentCounter}</span></p>
             <div className="game">
-                <p className="points score"><span>{currentCounter}</span></p>
                 <div className={rotation + " circle"}>
                     <div className="innercircle"></div>
                     <div className='figure'>
